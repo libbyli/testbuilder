@@ -17,8 +17,6 @@ var detectNetwork = function(cardNumber) {
   // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
   // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
   // Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
-  // checkChinaUnionPay(cardNumber);
-  // checkSwitch(cardNumber);
   for (var prefixChina = 622126; prefixChina <= 622925; prefixChina++) {
   	if (cardNumber.startsWith(prefixChina.toString()) && (16 <= cardNumber.length <= 19)) {
   		return 'China UnionPay';
@@ -71,46 +69,3 @@ var detectNetwork = function(cardNumber) {
     return 'Visa';
   } 
 };
-
-var checkChinaUnionPay = function(numChina) {
-  // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
-  for (var prefixChina = 622126; prefixChina <= 622925; prefixChina++) {
-  	if (numChina.startsWith(prefixChina.toString()) && (16 <= numChina.length <= 19)) {
-  		return 'China UnionPay';
-  	}
-  }
-  
-  for (var prefixChina2 = 624; prefixChina2 <= 626; prefixChina2++) {
-  	if (numChina.startsWith(prefixChina2.toString()) && (16 <= numChina.length <= 19)) {
-  		return 'China UnionPay';
-  	}
-  }
-
-  for (var prefixChina3 = 6282; prefixChina3 <= 6288; prefixChina3++) {
-  	if (numChina.startsWith(prefixChina3.toString()) && (16 <= numChina.length <= 19)) {
-  		return 'China UnionPay';
-  	}
-  }
-};
-
-var checkSwitch = function(numSwitch) {
-  // Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
-  if ((numSwitch.startsWith('4903') || numSwitch.startsWith('4905') || numSwitch.startsWith('4911') 
-  	|| numSwitch.startsWith('4936')) || numSwitch.startsWith('564182') || numSwitch.startsWith('633110')
-  	|| numSwitch.startsWith('6333') || numSwitch.startsWith('6759') && (numSwitch.length === 16 
-  	|| numSwitch.length === 18 || numSwitch.length === 19)) {
-  		return 'Switch';
-  	}
-};
-
-var checkDiscover = function(numDiscover) {
-// Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
-  for (var prefixDiscover = 644; prefixDiscover <= 649; prefixDiscover++) {
-  	if ((numDiscover.startsWith(prefixDiscover.toString())) && (numDiscover.length === 16 || numDiscover.length === 19)) {
-  		return 'Discover';
-  	}
-  }
-  if ((numDiscover.startsWith('6011') || numDiscover.startsWith('65')) && (numDiscover.length === 16 || numDiscover.length === 19)) {
-  	return 'Discover';
-  }
-}
